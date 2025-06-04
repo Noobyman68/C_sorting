@@ -13,8 +13,8 @@
     long double*: MergeLongDouble \
 )(a,b)
 
-
-char* mergeChar(char *l1, int size1, char *l2, int size2){
+//takes in 2 sorted arrays and returns 1 combined sorted array
+static char* mergeChar(char *l1, int size1, char *l2, int size2){
     char *l3 = (char *)malloc((size1+size2) * sizeof(char));
     char *endL1 = l1+size1;
     char *endL2 = l2+size2;
@@ -43,7 +43,7 @@ char* mergeChar(char *l1, int size1, char *l2, int size2){
     }
     return l3 - (size1+size2);
 }
-short* mergeShort(short *l1, int size1, short *l2, int size2){
+static short* mergeShort(short *l1, int size1, short *l2, int size2){
     short *l3 = (short *)malloc((size1+size2) * sizeof(short));
     short *endL1 = l1 + size1;
     short *endL2 = l2 + size2;
@@ -72,7 +72,7 @@ short* mergeShort(short *l1, int size1, short *l2, int size2){
     }
     return l3 - (size1+size2);
 }
-int* mergeInt(int *l1,int size1, int *l2,int size2){
+static int* mergeInt(int *l1,int size1, int *l2,int size2){
     int *l3 = (int *)malloc((size1+size2) * sizeof(int));
     int *endL1 = l1+size1;
     int *endL2 = l2+size2;
@@ -101,7 +101,7 @@ int* mergeInt(int *l1,int size1, int *l2,int size2){
     }
     return l3 - (size1+size2);
 }
-long* mergeLong(long *l1, int size1, long *l2, int size2){
+static long* mergeLong(long *l1, int size1, long *l2, int size2){
     long *l3 = (long *)malloc((size1+size2) * sizeof(long));
     long *endL1 = l1+size1;
     long *endL2 = l2+size2;
@@ -130,7 +130,7 @@ long* mergeLong(long *l1, int size1, long *l2, int size2){
     }
     return l3 - (size1+size2);
 }
-long long* mergeLongLong(long long *l1, int size1, long long *l2, int size2){
+static long long* mergeLongLong(long long *l1, int size1, long long *l2, int size2){
     long long *l3 = (long long *)malloc((size1+size2) * sizeof(long long));
     long long *endL1 = l1+size1;
     long long *endL2 = l2+size2;
@@ -159,7 +159,7 @@ long long* mergeLongLong(long long *l1, int size1, long long *l2, int size2){
     }
     return l3 - (size1+size2);
 }
-float* mergeFloat(float *l1, int size1, float *l2, int size2){
+static float* mergeFloat(float *l1, int size1, float *l2, int size2){
     float *l3 = (float *)malloc((size1+size2) * sizeof(float));
     float *endL1 = l1+size1;
     float *endL2 = l2+size2;
@@ -188,7 +188,7 @@ float* mergeFloat(float *l1, int size1, float *l2, int size2){
     }
     return l3 - (size1+size2);
 }
-double* mergeDouble(double *l1, int size1, double *l2, int size2){
+static double* mergeDouble(double *l1, int size1, double *l2, int size2){
     double *l3 = (double *)malloc((size2+size2) * sizeof(double));
     double *endL1 = l1+size1;
     double *endL2 = l2+size2;
@@ -217,7 +217,7 @@ double* mergeDouble(double *l1, int size1, double *l2, int size2){
     }
     return l3 - (size1+size2);
 }
-long double* mergeLongDouble(long double *l1, int size1, long double *l2, int size2){
+static long double* mergeLongDouble(long double *l1, int size1, long double *l2, int size2){
     long double *l3 = (long double *)malloc((size1+size2) * sizeof(long double));
     long double *endL1 = l1+size1;
     long double *endL2 = l2+size2;
@@ -246,7 +246,7 @@ long double* mergeLongDouble(long double *l1, int size1, long double *l2, int si
     }
     return l3 - (size1+size2);
 }
-
+// recursive function that takes in unsorted array and returns pointer to sorted one
 char* MergeChar(char *list, int size){
     // 1 byte
     int typeSize = sizeof(char);
@@ -464,7 +464,3 @@ long double* MergeLongDouble(long double *list, int size){
     return mergedList;
 }
 
-int main(){
-    printf("Hello World");
-    return 0;
-}
