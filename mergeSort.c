@@ -1,4 +1,3 @@
-#include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
 
@@ -462,4 +461,3 @@ long double* MergeLongDouble(long double *list, int size){
   listR = NULL;
   return mergedList;
 }
-
