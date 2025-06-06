@@ -1,8 +1,6 @@
 #include "stdlib.h"
-#include "string.h"
-#include "stdio.h"
 
-#define bubblesort(a,b) _Generic((a) \
+#define bubblesort(a,b) _Generic((a), \
   char*: bubbleChar, \
   short*: bubbleShort, \
   int*: bubbleInt, \
@@ -181,4 +179,3 @@ long double* bubbleLongDouble(long double *list, int size){
   }
   return sortedList;
 }
-
