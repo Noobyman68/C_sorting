@@ -2,6 +2,17 @@
 #include "string.h"
 #include "stdio.h"
 
+#define bubblesort(a,b) _Generic((a) \
+  char*: bubbleChar, \
+  short*: bubbleShort, \
+  int*: bubbleInt, \
+  long*: bubbleLong, \
+  long long*: bubbleLongLong, \
+  float*: bubbleFloat, \
+  double*: bubbleDouble, \
+  long double*: bubbleLongDouble \
+)(a,b)
+
 char* bubbleChar(char *list, int size){
   char *sortedList = (char *)malloc(size * sizeof(char));
   for(int i = 0; i < size; i++){
@@ -11,7 +22,7 @@ char* bubbleChar(char *list, int size){
   char current;
   char next;
   for(int i = 0; i<size; i++){
-    for(int k = 0; k < size; k++){
+    for(int k = 0; k < size - 1; k++){
       current = *(sortedList+k);
       next = *(sortedList+k+1);
       if(current>next){
@@ -32,7 +43,7 @@ short* bubbleShort(char *list, int size){
   short current;
   short next;
   for(int i = 0; i<size; i++){
-    for(int k = 0; k < size; k++){
+    for(int k = 0; k < size - 1; k++){
       current = *(sortedList+k);
       next = *(sortedList+k+1);
       if(current>next){
@@ -53,7 +64,7 @@ int* bubbleInt(int *list, int size){
   int current;
   int next;
   for(int i = 0; i<size; i++){
-    for(int k = 0; k < size; k++){
+    for(int k = 0; k < size - 1; k++){
       current = *(sortedList+k);
       next = *(sortedList+k+1);
       if(current>next){
@@ -74,7 +85,7 @@ long* bubbleLong(long *list, int size){
   long current;
   long next;
   for(int i = 0; i<size; i++){
-    for(int k = 0; k < size; k++){
+    for(int k = 0; k < size - 1; k++){
       current = *(sortedList+k);
       next = *(sortedList+k+1);
       if(current>next){
@@ -95,7 +106,7 @@ long long* bubbleLongLong(long long *list, int size){
   long long current;
   long long next;
   for(int i = 0; i<size; i++){
-    for(int k = 0; k < size; k++){
+    for(int k = 0; k < size - 1; k++){
       current = *(sortedList+k);
       next = *(sortedList+k+1);
       if(current>next){
@@ -116,7 +127,7 @@ float* bubbleFloat(float *list, int size){
   float current;
   float next;
   for(int i = 0; i<size; i++){
-    for(int k = 0; k < size; k++){
+    for(int k = 0; k < size - 1; k++){
       current = *(sortedList+k);
       next = *(sortedList+k+1);
       if(current>next){
@@ -137,7 +148,7 @@ double* bubbleDouble(double *list, int size){
   double current;
   double next;
   for(int i = 0; i<size; i++){
-    for(int k = 0; k < size; k++){
+    for(int k = 0; k < size - 1; k++){
       current = *(sortedList+k);
       next = *(sortedList+k+1);
       if(current>next){
@@ -158,7 +169,7 @@ long double* bubbleLongDouble(long double *list, int size){
   long double current;
   long double next;
   for(int i = 0; i<size; i++){
-    for(int k = 0; k < size; k++){
+    for(int k = 0; k < size - 1; k++){
       current = *(sortedList+k);
       next = *(sortedList+k+1);
       if(current>next){
@@ -171,21 +182,3 @@ long double* bubbleLongDouble(long double *list, int size){
   return sortedList;
 }
 
-
-
-
-int main(){
-  int nums[] = {0,3,6,7,87,889,321,3,2,0,43,76,99,5};
-  int size = sizeof(nums)/sizeof(nums[0]);
-  int *sortedNums = bubbleInt(nums, size);
-  printf("\n");
-  for(int i = 0; i < size; i++){
-    printf("%d ", nums[i]);
-  }
-  printf("\n");
-  for(int i = 0; i < size; i++){
-    printf("%d ", sortedNums[i]);
-  }
-
-  return 0;
-}
