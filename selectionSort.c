@@ -166,20 +166,3 @@ long double* selectionLongDouble(long double *list, int size){
   return sortedList;
 }
 
-
-
-
-int main(){
-  int nums[] = {0,233,889,56,45,76,12,1,2,3,0,0,54,66,98};
-  int size = sizeof(nums)/sizeof(nums[1]);
-  int* sortedNums = selectionsort(nums, size);
-  for(int i = 0; i < size; i++){
-    printf("%d ", nums[i]);
-  }
-  printf("\n");
-  for(int i = 0; i < size; i++){
-    printf("%d ", sortedNums[i]);
-  }
-  free(sortedNums);
-  sortedNums = NULL;
-}
