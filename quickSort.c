@@ -40,13 +40,13 @@ void partitionInt(int *list, int size){
     while(*(list + j) > median){
       j--;
     }
-    if(*(list+i)==median && *(list+j)==median){
-      printf("%d ", i);
-      printf("I got here");
-      j--;
-      i++;
-      printf("%d ", i);
-    }
+//    if(*(list+i)==median && *(list+j)==median){
+//      printf("%d ", i);
+//      printf("I got here");
+//      j--;
+//      i++;
+//      printf("%d ", i);
+//    }
 //we have our partitions if this is true;
     if(i>=j){
       break;
@@ -75,7 +75,7 @@ int* quickInt(int *list, int size){
 }
 
 int main(){
-  int nums[] = {0,6,4,5,2,43,1,6,0,99,87,56,43,2,3};
+  int nums[] = {0,6,4,5,2,43,1,99,87,56,43,3};
   int size = sizeof(nums)/sizeof(nums[0]);
   int *sortedNums = quickInt(nums, size);
   for(int i = 0; i < size; i++){
