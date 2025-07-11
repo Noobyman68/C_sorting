@@ -12,6 +12,62 @@
   long double*: MergeLongDouble \
 )(a,b)
 
+
+//cmp will type cast and return (ptr1 - ptr2)
+static void* minVal(void *ptr1, void *ptr2, int (*cmp)(void*,void*)){
+  return (cmp(ptr1, ptr2) < 0 ? ptr1 : ptr2;
+}
+static char minChar(void *ptr1, void *ptr2){
+  return *(char*)ptr1 - *(char*)ptr2;
+}
+static short minShort(void *ptr1, void *ptr2){
+  return *(short*)ptr1 - *(short*)ptr2;
+}
+static int minInt(void *ptr1, void *ptr2){
+  return *(int*)ptr1 - *(int*)ptr2;
+}
+static long minLong(void *ptr1, void *ptr2){
+  return *(long*)ptr1 - *(long*)ptr2;
+}
+static long long mingLongLong(void *ptr1, void *ptr2){
+  return *(long long*)ptr1 - *(long long*)ptr2;
+}
+static float minFloat(void *ptr1, void *ptr2){
+  return *(float*)ptr1 - *(float*)ptr2;
+}
+static double minDouble(void *ptr1, void *ptr2){
+  return *(double*)ptr1 - *(double*)ptr2;
+}
+static long double minLongDouble(void *ptr1, void *ptr2){
+  return *(long double*)ptr1 - *(long double*)ptr2;
+}
+
+static char* mergeChar(char *l1, int size1, char*l2, int size2){
+  int sizeT = size1 + size2;
+  char *ptr = (char*)malloc(sizeT * sizeof(char));
+  char *temp = (char*)malloc(sizeT-1 * sizeof(char));
+  if(!size1 && !size2){
+//    *ptr = *(char*)(minVal(l1,l2, minChar);
+    if(*l1<*l2){
+      *ptr = *l1;
+      temp = merge(l1+1,size1-1,l2,size2);
+    }else{
+      *ptr = *l2;
+      temp = merge(l1,size1,l2+1,size2-1);
+    }
+  }else if(!size1){
+    *ptr = *l2;
+    temp = merge(l1,size1,l2+1,size2-1);
+  }else if(!size2){
+    *ptr = *l1;
+    temp = merge(l1+1,size1-1,l2,size2);
+  }
+  memcpy(ptr+1,temp,sizeT-1);
+  free(temp);
+  return ptr;
+//if no conditions met, no reccursive call stopping loop
+}
+
 //takes in 2 sorted arrays and returns 1 combined sorted array
 static char* mergeChar(char *l1, int size1, char *l2, int size2){
 char *l3 = (char *)malloc((size1+size2) * sizeof(char));
@@ -71,6 +127,7 @@ static short* mergeShort(short *l1, int size1, short *l2, int size2){
   }
   return l3 - (size1+size2);
 }
+
 static int* mergeInt(int *l1,int size1, int *l2,int size2){
   int *l3 = (int *)malloc((size1+size2) * sizeof(int));
   int *endL1 = l1+size1;
