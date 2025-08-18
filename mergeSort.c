@@ -1,3 +1,36 @@
+//wrote reccursive functions for mergeChar, second I believe is better
+//to do:
+//test reccursive functions
+//work on generality of less than function to include functionality of choosing which list and size to increment
+//currently min function only returns lesser pointer between 2 input pointers
+//work on generallity of functional programming in general for typing generality
+//learn about tailend reccursion 
+
+//pure functions are deterministic and stateless
+//can functions remian deterministic even if not stateless?
+//if function functionality is based entirely on inputs then yes
+//if function functionality relys on state of outside variable then no
+//
+//Goal to estbalish paradime
+//determinisitc functions for simplicity and reliability
+//state control for optimization and memory management
+//should all functions return a value? (swapping two values case)
+
+
+//swapping two values case
+//modifies state of values at two inputted addresses
+//enter the same addresses twice, different result even though same operation
+//swap a list of 50 addresses in list iteratively and it will be different each time(looping every x amount of iterations through function)
+//how should it be handled instead?
+//input list of two values and return new list with values swapped
+//input the same list and it will output the same list every time
+
+
+
+
+
+
+
 #include "stdlib.h"
 #include "string.h"
 
@@ -42,6 +75,7 @@ static long double minLongDouble(void *ptr1, void *ptr2){
   return *(long double*)ptr1 - *(long double*)ptr2;
 }
 
+//recurssion adds enitre returned array from deeper levels onto lowest value in current level
 static char* mergeChar(char *l1, int size1, char*l2, int size2){
   int sizeT = size1 + size2;
   char *ptr = (char*)malloc(sizeT * sizeof(char));
@@ -50,22 +84,53 @@ static char* mergeChar(char *l1, int size1, char*l2, int size2){
 //    *ptr = *(char*)(minVal(l1,l2, minChar);
     if(*l1<*l2){
       *ptr = *l1;
-      temp = merge(l1+1,size1-1,l2,size2);
+      temp = mergeChar(l1+1,size1-1,l2,size2);
     }else{
       *ptr = *l2;
-      temp = merge(l1,size1,l2+1,size2-1);
+      temp = mergeChar(l1,size1,l2+1,size2-1);
     }
   }else if(!size1){
     *ptr = *l2;
-    temp = merge(l1,size1,l2+1,size2-1);
+    temp = mergeChar(l1,size1,l2+1,size2-1);
   }else if(!size2){
     *ptr = *l1;
-    temp = merge(l1+1,size1-1,l2,size2);
+    temp = mergeChar(l1+1,size1-1,l2,size2);
   }
   memcpy(ptr+1,temp,sizeT-1);
   free(temp);
   return ptr;
 //if no conditions met, no reccursive call stopping loop
+}
+
+//recurssion adds value to array and passes it to next call, returns entire list at end
+static char* mergeChar(char *l1, int size1, char *l2, int size2, char *list){
+  char *newList = (char*)malloc((size3+1) * sizeof(char));
+  memcpy(newList,list,size3);
+  char *L1 = l1;
+  char *L2 = l2;
+  int Size1 = size1;
+  int Size2 = size2;
+  if(!size1 && !size2){
+    if(*l1 < *l2){
+      newList[size3] = *l1;
+      L1++;
+      Size1++;
+    }else{
+      newList[size] = *l2;
+      L2++;
+      Size2++;
+    }
+  }else if(!size1){
+    newList[size3] = *l2;
+    L2++;
+    Size2++;
+  }else if(!size2){
+    newList[size3] = *l1;
+    L1++;
+    Size1++;
+  }
+  free(list);
+  return mergeChar(L1,Size1,L2,Size2,newList,size3+1);
 }
 
 //takes in 2 sorted arrays and returns 1 combined sorted array
